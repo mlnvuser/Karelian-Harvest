@@ -1,0 +1,86 @@
+.products-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.products-title{
+    display: flex;
+    justify-content: center;
+    font-family: "Snell Roundhand", sans-serif;
+    gap: 5%;
+    align-items: center;
+    width: 70%;
+    margin: 2% 0;
+    font-size: 1.2em;
+}
+
+.products{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background:
+  linear-gradient(to top, rgba(255, 255, 255, 0) 95%, #fff),
+  linear-gradient(to bottom, rgba(255, 255, 255, 0) 95%, #fff),
+  url('../img/products.png');
+    background-size: cover;
+}
+
+.products-menu{
+    display: flex;
+    flex-wrap: wrap; /* Для перехода на два ряда */
+    width: 70%;
+    height: 350px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5%;
+    width: 20%;
+}
+
+.product img{
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Обеспечиваем сохранение пропорций */
+    transition: transform 0.3s ease; /* Добавляем плавное изменение при наведении */
+}
+
+.product img:hover {
+    transform: scale(1.05); /* При наведении изображение увеличивается */
+}
+
+.show-all{
+    margin: 2% 0;
+}
+
+
+/* МЕДИА */
+
+
+@media (max-width: 768px) {
+    .products-menu{
+        width: 80%;
+        height: 500px;
+    }
+
+    .products{
+        background:
+  linear-gradient(to top, rgba(255, 255, 255, 0) 95%, #fff),
+  linear-gradient(to bottom, rgba(255, 255, 255, 0) 95%, #fff),
+  url('../img/fon2.png');
+        background-size: cover;
+    }
+
+    .product {
+        width: 45%; /* Для двух изображений в ряду на маленьких экранах */
+    }
+
+
+}

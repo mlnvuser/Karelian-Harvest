@@ -1,0 +1,45 @@
+@font-face{
+font-family: "Theano Didot";
+src: url("../fonts/Theano Didot.ttf") format("truetype");
+font-style: normal;
+font-weight: normal;
+}
+
+@font-face{
+font-family: "Snell Roundhand";
+src: url( "../fonts/Snell Roundhand.ttf") format("truetype");
+font-style: normal;
+font-weight: normal;
+}
+
+body{
+    font-family: "Theano Didot", sans-serif;
+    margin: 0;
+    color: #1d1d1d;
+}
+
+hr{
+    width: 70%;
+}
+
+h1{
+    white-space: nowrap;
+}
+
+.btn{
+    background-color: #9e1b32; /* Красный цвет */
+    color: white;
+    padding: 15px 20px;
+    font-family: "Theano Didot", sans-serif;
+    border: none;
+    border-radius: 25px; /* Скругленные углы */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #8b162a; /* Тёмно-красный при наведении */
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+}

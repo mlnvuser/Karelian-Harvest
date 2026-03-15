@@ -1,0 +1,85 @@
+.head-container{
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 95%, #fff), url('../img/header.png');
+    background-size: cover;
+    margin: 0 auto;
+}
+
+.nav-container{
+    display: flex;
+    width: 70%;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2% 0;
+    max-width: 100%;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    font-family: "Snell Roundhand", sans-serif;
+    font-weight: bold;
+    gap: 1%;
+    font-size: 1.2em;
+}
+
+.logo h1{
+    text-shadow:
+    0 0 10px #fff,   /* Легкое свечение */
+    0 0 20px #fff,   /* Увеличенное свечение */
+    0 0 30px #fff,   /* Еще большее свечение */
+    0 0 40px #fff,   /* И еще большее свечение */
+    0 0 50px #fff;   /* Самое сильное свечение */
+}
+
+#nav-icon{
+    width: 100px;
+    height: auto;
+
+}
+
+.navigation{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.navigation a {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: black;
+    font-weight: normal;
+    text-shadow:
+    0 0 10px #fff,   /* Легкое свечение */
+    0 0 20px #fff,   /* Увеличенное свечение */
+    0 0 30px #fff,   /* Еще большее свечение */
+    0 0 40px #fff,   /* И еще большее свечение */
+    0 0 50px #fff;   /* Самое сильное свечение */
+}
+
+.navigation a:hover{
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+}
+
+
+/* МЕДИА */
+
+
+@media (max-width: 1024px) {
+    #nav-icon{
+        width: 70px;
+    }
+}
+
+@media (max-width: 768px) {
+    #nav-icon{
+        width: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    #nav-icon{
+        width: 50px;
+    }
+}
