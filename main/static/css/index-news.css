@@ -1,0 +1,70 @@
+.articles-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.article-title{
+    display: flex;
+    justify-content: center;
+    font-family: "Snell Roundhand", sans-serif;
+    gap: 5%;
+    align-items: center;
+    width: 100%;
+    font-size: 1.2em;
+}
+
+.articles{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5%;
+
+}
+
+.article{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 47%;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Лёгкая тень для эффекта приподнятости */
+    margin: 2% 0;
+}
+
+.article img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover; /* Обеспечиваем сохранение пропорций */
+    transition: transform 0.3s ease; /* Добавляем плавное изменение при наведении */
+}
+
+.article img:hover {
+    transform: scale(1.05); /* При наведении изображение увеличивается */
+}
+
+.article-content{
+    padding: 5% 5%;
+}
+
+.more-articles{
+    margin: 2% 0;
+}
+
+
+/* МЕДИА*/
+
+
+@media (max-width: 768px) {
+    .articles-container{
+        width: 80%;
+    }
+    .article {
+        width: 100%;
+    }
+}

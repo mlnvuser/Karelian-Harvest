@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/body.css' %}">
     <link rel="stylesheet" href="{% static 'css/header.css' %}">
-    <link rel="stylesheet" href="{% static 'css/slider.css' %}">
-    <link rel="stylesheet" href="{% static 'css/products.css' %}">
-    <link rel="stylesheet" href="{% static 'css/news.css' %}">
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    {% block styles %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>

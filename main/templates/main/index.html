@@ -1,6 +1,12 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/index-slider.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index-products.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index-news.css' %}">
+{% endblock %}
+
 {% block slider %}
 <section class="slider-container">
     <div class="slider-wrapper">
@@ -12,7 +18,7 @@
                 <a href="#">Подробнее</a>
             </div>
             <div class="slide-img">
-                <img src="{% static 'img/slide3.jpg' %}" alt="Slide 3">
+                <img src="{% static 'img/news/slide3.jpg' %}" alt="Slide 3">
             </div>
         </div>
 
@@ -24,7 +30,7 @@
             <a href="#">Подробнее</a>
         </div>
         <div class="slide-img">
-            <img src="{% static 'img/slide1.jpg' %}" alt="Slide 1">
+            <img src="{% static 'img/news/slide1.jpg' %}" alt="Slide 1">
         </div>
     </div>
     <div class="slide">
@@ -34,7 +40,7 @@
             <a href="#">Подробнее</a>
         </div>
         <div class="slide-img">
-            <img src="{% static 'img/slide2.jpg' %}" alt="Slide 2">
+            <img src="{% static 'img/news/slide2.jpg' %}" alt="Slide 2">
         </div>
     </div>
     <div class="slide">
@@ -44,7 +50,7 @@
             <a href="#">Подробнее</a>
         </div>
         <div class="slide-img">
-            <img src="{% static 'img/slide3.jpg' %}" alt="Slide 3">
+            <img src="{% static 'img/news/slide3.jpg' %}" alt="Slide 3">
         </div>
     </div>
 
@@ -56,7 +62,7 @@
             <a href="#">Подробнее</a>
         </div>
         <div class="slide-img">
-            <img src="{% static 'img/slide1.jpg' %}" alt="Slide 1">
+            <img src="{% static 'img/news/slide1.jpg' %}" alt="Slide 1">
         </div>
     </div>
     </div>
@@ -110,31 +116,32 @@
         </div>
         <div class="articles">
             <div class="article">
-                <img src="{% static 'img/slide1.jpg' %}" alt="">
+                <img src="{% static 'img/news/slide1.jpg' %}" alt="">
                 <div class="article-content">
                     <h2>Название</h2>
                     <p>Описание статьи...</p>
                 </div>
             </div>
             <div class="article">
-                <img src="{% static 'img/slide2.jpg' %}" alt="">
+                <img src="{% static 'img/news/slide2.jpg' %}" alt="">
                 <div class="article-content">
                     <h2>Название</h2>
                     <p>Описание статьи...</p>
                 </div>
             </div>
             <div class="article">
-                <img src="{% static 'img/slide3.jpg' %}" alt="">
+                <img src="{% static 'img/news/slide3.jpg' %}" alt="">
                 <div class="article-content">
                     <h2>Название</h2>
                     <p>Описание статьи...</p>
                 </div>
             </div>
             <div class="article">
-                <img src="{% static 'img/berries.jpg' %}" alt="">
+                <img src="{% static 'img/news/berries.jpg' %}" alt="">
                 <div class="article-content">
                     <h2>Название</h2>
                     <p>Описание статьи...</p>
+                    <p>19 марта 2026 г.</p>
                 </div>
             </div>
         </div>

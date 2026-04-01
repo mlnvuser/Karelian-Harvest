@@ -47,18 +47,11 @@
 
 .navigation a {
     text-decoration: none; /* Убираем подчеркивание */
-    color: black;
-    font-weight: normal;
-    text-shadow:
-    0 0 10px #fff,   /* Легкое свечение */
-    0 0 20px #fff,   /* Увеличенное свечение */
-    0 0 30px #fff,   /* Еще большее свечение */
-    0 0 40px #fff,   /* И еще большее свечение */
-    0 0 50px #fff;   /* Самое сильное свечение */
+    color: #1d1d1d;
 }
 
 .navigation a:hover{
-    text-decoration: underline;
+    text-decoration: underline; /* Возвращаем подчеркивание */
     text-decoration-thickness: 1px;
 }
 
