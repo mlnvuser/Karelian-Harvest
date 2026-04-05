@@ -9,22 +9,27 @@
 .nav-container{
     display: flex;
     width: 70%;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    padding: 2% 0;
+    gap: 3vmax;
+    padding: 2vmax 0;
     max-width: 100%;
 }
 
-.logo{
-    display: flex;
-    align-items: center;
-    font-family: "Snell Roundhand", sans-serif;
-    font-weight: bold;
-    gap: 1%;
-    font-size: 1.2em;
+#nav-icon{
+    width: 10vmax;
+    height: auto;
 }
 
-.logo h1{
+.navigation{
+    display: flex;
+    flex-direction: column;
+    gap: 1vmax;
+}
+
+.name h1{
+    font-family: "Snell Roundhand", sans-serif;
+    font-size: 3vmax;
     text-shadow:
     0 0 10px #fff,   /* Легкое свечение */
     0 0 20px #fff,   /* Увеличенное свечение */
@@ -33,46 +38,51 @@
     0 0 50px #fff;   /* Самое сильное свечение */
 }
 
-#nav-icon{
-    width: 100px;
-    height: auto;
-
-}
-
-.navigation{
+.menu{
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 2vmax;
 }
 
-.navigation a {
+.nav-menu{
+    display: flex;
+    justify-content: center;
+    font-size: 1vw;
+    gap: 2vw;
+    background-image: url("../img/menu.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 1vw 4vw;
+}
+
+.nav-menu a{
     text-decoration: none; /* Убираем подчеркивание */
-    color: #1d1d1d;
+    color: #421402;
 }
 
-.navigation a:hover{
+.nav-menu a:hover{
     text-decoration: underline; /* Возвращаем подчеркивание */
     text-decoration-thickness: 1px;
 }
 
+#buy{
+    display: flex;
+    padding: 1vw 3.5vw;
+    text-align: center;
+    font-size: 1.1vw;
+    color: #fbe8bd;
+    text-decoration: none;
+    background-image: url('../img/buy2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.3s ease;
+}
+
+#buy:hover {
+    transform: scale(1.05); /* При наведении изображение увеличивается */
+}
+
 
 /* МЕДИА */
-
-
-@media (max-width: 1024px) {
-    #nav-icon{
-        width: 70px;
-    }
-}
-
-@media (max-width: 768px) {
-    #nav-icon{
-        width: 60px;
-    }
-}
-
-@media (max-width: 480px) {
-    #nav-icon{
-        width: 50px;
-    }
-}
