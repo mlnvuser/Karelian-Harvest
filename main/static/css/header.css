@@ -73,16 +73,145 @@
     font-size: 1.1vw;
     color: #fbe8bd;
     text-decoration: none;
-    background-image: url('../img/buy2.png');
+    background-image: url('../img/buy.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     transition: transform 0.3s ease;
 }
 
-#buy:hover {
-    transform: scale(1.05); /* При наведении изображение увеличивается */
+#buy:hover{
+    transform: scale(1.05);
 }
 
 
-/* МЕДИА */
+.mobile-menu-btn {
+    display: none;                    /* Скрыто на больших экранах */
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    padding: 8px;
+    transition: transform 0.3s ease;
+    z-index: 1002;
+}
+
+.mobile-menu-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;              /* Картинка не растягивается */
+    filter: brightness(0.9);          /* Можно убрать, если не нужно */
+}
+
+.mobile-menu-btn:hover {
+    transform: scale(1.12);           /* Лёгкое увеличение при наведении */
+}
+
+.mobile-menu-btn:active {
+    transform: scale(0.95);
+}
+
+/* Мобильное меню */
+
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #5c2f18; /* Коричневый фон */
+    display: none;
+    flex-direction: column;
+    z-index: 9999;
+}
+
+.mobile-menu-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 5vw;
+}
+
+.close-menu {
+    background: none;
+    border: none;
+    font-size: 3rem;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 20px;
+    line-height: 1;
+}
+
+.mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6vh;
+    margin-top: 15vh;
+    text-align: center;
+}
+
+.mobile-menu-links a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-links h3,
+.mobile-menu-links h4 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: normal;
+}
+
+.mobile-buy-btn h4 {
+    font-size: 2rem;
+    padding: 12px 40px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 50px;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.menu-open .burger {
+    display: none !important;
+}
+
+
+/* MEDIA */
+
+
+@media (max-width: 1024px) {
+    .nav-menu,
+    .buy {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .nav-container {
+        width: 92%;
+        padding: 1.5vmax 0;
+    }
+
+    .name h1 {
+        font-size: 2.9vmax;
+    }
+}
+
+@media (max-width: 768px) {
+    .name h1 {
+        display: none;
+    }
+
+    .nav-container{
+        gap: 20%;
+    }
+
+    .mobile-menu-links h3,
+    .mobile-menu-links h4 {
+        font-size: 2rem;
+    }
+}

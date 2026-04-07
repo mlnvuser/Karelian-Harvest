@@ -51,7 +51,14 @@
 }
 
 .article-content{
+    width: 100%;
     padding: 5% 5%;
+    box-sizing: border-box;
+}
+
+#data-article{
+    display: flex;
+    justify-content: flex-end;
 }
 
 .more-articles{
