@@ -189,6 +189,7 @@
 
     .mobile-menu-btn {
         display: flex;
+        align-items: flex-end;
     }
 
     .nav-container {
