@@ -1,38 +1,52 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const menuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     const closeBtn = document.getElementById('closeMenu');
+    let startX = 0;
+    let currentX = 0;
+    let isSwiping = false;
 
+    // Открытие меню свайпом
     function openMenu() {
-        mobileMenu.style.display = 'flex';
-        document.body.classList.add('menu-open');
+        mobileMenu.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 
     function closeMenu() {
-        mobileMenu.style.display = 'none';
-        document.body.classList.remove('menu-open');
+        mobileMenu.classList.remove('active');
         document.body.style.overflow = '';
     }
 
-    menuBtn.addEventListener('click', (e) => {
-        e.preventDefault();           // предотвращаем переход по ссылке #
-        openMenu();
+    // Свайп обработчики
+    document.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isSwiping = true;
     });
 
+    document.addEventListener('touchmove', (e) => {
+        if (!isSwiping) return;
+        currentX = e.touches[0].clientX;
+    });
+
+    document.addEventListener('touchend', () => {
+        if (!isSwiping) return;
+
+        const diff = startX - currentX;
+
+        // Если свайп был справа налево и достаточно длинный
+        if (diff > 80 && startX > window.innerWidth * 0.7) {
+            openMenu();
+        }
+
+        isSwiping = false;
+    });
+
+    // Закрытие по крестику
     closeBtn.addEventListener('click', closeMenu);
 
-    // Закрытие по клику на ссылки в меню
+    // Закрытие по клику на ссылки
     document.querySelectorAll('.mobile-menu-links a').forEach(link => {
         link.addEventListener('click', () => {
-            setTimeout(closeMenu, 300);
+            setTimeout(closeMenu, 250);
         });
-    });
-
-    // Закрытие по клавише Escape
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && mobileMenu.style.display === 'flex') {
-            closeMenu();
-        }
     });
 });
