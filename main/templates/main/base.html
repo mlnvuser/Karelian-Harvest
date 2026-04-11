@@ -33,24 +33,36 @@
                 </div>
             </div>
         </div>
-
-        <div class="swipe-hint" id="swipeHint">
-            <div class="hint-line"></div>
-        </div>
-        <div class="mobile-menu" id="mobileMenu">
-            <div class="mobile-menu-header">
-                <button class="close-menu" id="closeMenu">✕</button>
-            </div>
-            <div class="mobile-menu-links">
-                <a href=""><h3>Главная</h3></a>
-                <a href=""><h3>Продукты</h3></a>
-                <a href=""><h3>Новости</h3></a>
-                <a href=""><h3>Контакты</h3></a>
-                <a href="" class="mobile-buy-btn"><h4>Купить</h4></a>
-            </div>
-        </div>
     </nav>
 </header>
+
+<section class="mobile-burger-section">
+
+    <!-- Блок с бургер-иконкой -->
+    <div class="mobile-burger-block">
+        <div class="burger" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- Мобильное меню -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-header">
+            <button class="close-menu" id="closeMenu">✕</button>
+        </div>
+
+        <div class="mobile-menu-links">
+            <a href=""><h3>Главная</h3></a>
+            <a href=""><h3>Продукты</h3></a>
+            <a href=""><h3>Новости</h3></a>
+            <a href=""><h3>Контакты</h3></a>
+            <a href="" class="mobile-buy-btn"><h4>Купить</h4></a>
+        </div>
+    </div>
+
+</section>
 
 {% block slider %}{% endblock %}
 {% block products %}{% endblock %}
