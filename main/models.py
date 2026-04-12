@@ -70,22 +70,27 @@ class News(models.Model):
     )
     description = models.TextField(blank=True, verbose_name='Описание')
     is_featured = models.BooleanField(default=False,verbose_name='Избранная новость')
-    published = models.BooleanField(default=False,verbose_name='Опубликовано')
+    published = models.BooleanField(default=False,verbose_name='Опубликовать')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Создано')
     updated = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
 
     class Meta:
-        ordering = ['name']
+        ordering = ['-created']
         indexes = [
             models.Index(fields = ['slug']),
             models.Index(fields = ['name']),
             models.Index(fields = ['-created']),
+            models.Index(fields=['is_featured']),
+            models.Index(fields=['published']),
         ]
         verbose_name = 'Новость'
         verbose_name_plural = 'Новости'
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('main:news_detail', args=[self.slug])
 
     def clean(self):
         """Запрещаем загружать одновременно и фото, и видео"""
@@ -108,8 +113,11 @@ class News(models.Model):
 
     @classmethod
     def get_featured(cls, limit=3):
-        """Возвращает избранные новости, отсортированные по дате создания (новые сверху)"""
-        return cls.objects.filter(published=True,is_featured=True).order_by('-created')[:limit]
+        """Возвращает избранные новости в виде списка, отсортированные по дате создания (новые сверху)"""
+        return list(cls.objects.filter(
+            is_featured=True,
+            published=True
+        ).order_by('-created')[:limit])
 
 class ContactInformation(models.Model):
     phone = models.CharField(max_length=20, blank=True, verbose_name='Номер телефона')

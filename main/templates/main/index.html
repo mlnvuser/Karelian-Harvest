@@ -8,64 +8,78 @@
 {% endblock %}
 
 {% block slider %}
-<section class="slider-container">
-    <div class="slider-wrapper">
-        <!-- Клон последнего слайда (для бесшовности) -->
-        <div class="slide clone">
+<section class="slider-container" id="news-slider">
+    <div class="slider-wrapper" id="slider-wrapper">
+
+        <!-- КЛОНЫ ТОЛЬКО ЕСЛИ НОВОСТЕЙ БОЛЬШЕ ОДНОЙ -->
+        {% if featured_news|length > 1 %}
+            <!-- Клон последнего слайда (для бесшовной прокрутки) -->
+            {% if last_news %}
+            <div class="slide clone" data-original-index="0">
+                <div class="slide-content">
+                    <h2>{{ last_news.name }}</h2>
+                    <p>{{ last_news.description|slice:':150' }}{% if last_news.description|length > 150 %}...{% endif %}</p>
+                    <a href="{{ last_news.get_absolute_url }}">Подробнее</a>
+                </div>
+                <div class="slide-img">
+                    {% if last_news.get_media_type == 'video' %}
+                        <video muted loop autoplay loading="lazy"><source src="{{ last_news.video.url }}"></video>
+                    {% elif last_news.get_media_type == 'image' %}
+                        <img src="{{ last_news.image.url }}" alt="{{ last_news.name }}">
+                    {% else %}
+                        <img src="{% static 'img/default.png' %}" alt="Default">
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        {% endif %}
+
+        <!-- Оригинальные слайды -->
+        {% for news in featured_news %}
+        <div class="slide" data-original-index="{{ forloop.counter0 }}">
             <div class="slide-content">
-                <h2>Sweet Moments</h2>
-                <p>Enjoy the sweetest treats made with care.</p>
-                <a href="#">Подробнее</a>
+                <h2>{{ news.name }}</h2>
+                <p>{{ news.description|slice:':150' }}{% if news.description|length > 150 %}...{% endif %}</p>
+                <a href="{{ news.get_absolute_url }}">Подробнее</a>
             </div>
             <div class="slide-img">
-                <img src="{% static 'img/news/slide3.jpg' %}" alt="Slide 3">
+                {% if news.get_media_type == 'video' %}
+                    <video muted loop autoplay loading="lazy"><source src="{{ news.video.url }}"></video>
+                {% elif news.get_media_type == 'image' %}
+                    <img src="{{ news.image.url }}" alt="{{ news.name }}">
+                {% else %}
+                    <img src="{% static 'img/default.png' %}" alt="Default">
+                {% endif %}
             </div>
         </div>
+        {% endfor %}
 
-    <!-- Оригинальные слайды -->
-    <div class="slide">
-        <div class="slide-content">
-            <h2>Made with Love</h2>
-            <p>Delicious homemade recipes this Mother's Day.</p>
-            <a href="#">Подробнее</a>
-        </div>
-        <div class="slide-img">
-            <img src="{% static 'img/news/slide1.jpg' %}" alt="Slide 1">
-        </div>
-    </div>
-    <div class="slide">
-        <div class="slide-content">
-            <h2>Stacks of Cookies</h2>
-            <p>Our limited-edition cookies for a lifetime of joy.</p>
-            <a href="#">Подробнее</a>
-        </div>
-        <div class="slide-img">
-            <img src="{% static 'img/news/slide2.jpg' %}" alt="Slide 2">
-        </div>
-    </div>
-    <div class="slide">
-        <div class="slide-content">
-            <h2>Sweet Moments</h2>
-            <p>Enjoy the sweetest treats made with care.</p>
-            <a href="#">Подробнее</a>
-        </div>
-        <div class="slide-img">
-            <img src="{% static 'img/news/slide3.jpg' %}" alt="Slide 3">
-        </div>
+        <!-- Клон первого слайда (для бесшовной прокрутки) -->
+        {% if featured_news|length > 1 %}
+            {% if first_news %}
+            <div class="slide clone" data-original-index="{{ featured_news|length }}">
+                <div class="slide-content">
+                    <h2>{{ first_news.name }}</h2>
+                    <p>{{ first_news.description|slice:':150' }}{% if first_news.description|length > 150 %}...{% endif %}</p>
+                    <a href="{{ first_news.get_absolute_url }}">Подробнее</a>
+                </div>
+                <div class="slide-img">
+                    {% if first_news.get_media_type == 'video' %}
+                        <video muted loop autoplay loading="lazy"><source src="{{ first_news.video.url }}"></video>
+                    {% elif first_news.get_media_type == 'image' %}
+                        <img src="{{ first_news.image.url }}" alt="{{ first_news.name }}">
+                    {% else %}
+                        <img src="{% static 'img/default.png' %}" alt="Default">
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+        {% endif %}
+
     </div>
 
-    <!-- Клон первого слайда (для бесшовности) -->
-    <div class="slide clone">
-        <div class="slide-content">
-            <h2>Made with Love</h2>
-            <p>Delicious homemade recipes this Mother's Day.</p>
-            <a href="#">Подробнее</a>
-        </div>
-        <div class="slide-img">
-            <img src="{% static 'img/news/slide1.jpg' %}" alt="Slide 1">
-        </div>
-    </div>
-    </div>
+    <!-- Стрелки навигации (скрыты если 1 новость) -->
+    {% if featured_news|length > 1 %}
     <div class="arrow arrow-left">
         <svg viewBox="0 0 24 24"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
     </div>
@@ -73,11 +87,14 @@
         <svg viewBox="0 0 24 24"><path d="M8.59 16.59 10 18l6-6-6-6-1.41 1.41L13.17 12z"/></svg>
     </div>
 
+    <!-- Точки навигации (скрыты если 1 новость) -->
     <div class="dots">
-        <span class="dot active" data-index="0"></span>
-        <span class="dot" data-index="1"></span>
-        <span class="dot" data-index="2"></span>
+        {% for news in featured_news %}
+        <span class="dot {% if forloop.first %}active{% endif %}" data-index="{{ forloop.counter0 }}"></span>
+        {% endfor %}
     </div>
+    {% endif %}
+
 </section>
 {% endblock %}
 

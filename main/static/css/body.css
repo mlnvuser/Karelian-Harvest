@@ -9,6 +9,7 @@ body{
     font-family: "Georgia", sans-serif;
     margin: 0;
     color: #1d1d1d;
+    min-width: 250px;
 }
 
 hr{
