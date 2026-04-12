@@ -1,11 +1,4 @@
 @font-face{
-font-family: "Theano Didot";
-src: url("../fonts/Theano Didot.ttf") format("truetype");
-font-style: normal;
-font-weight: normal;
-}
-
-@font-face{
 font-family: "Snell Roundhand";
 src: url( "../fonts/Snell Roundhand.ttf") format("truetype");
 font-style: normal;
