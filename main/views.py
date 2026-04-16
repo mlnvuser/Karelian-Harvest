@@ -10,10 +10,14 @@ def index(request):
     first_news = featured_news[0] if featured_news else None
     last_news = featured_news[-1] if featured_news else None
 
+    # Получаем ТОП-4 товара по скидке
+    top_discount_products = Product.get_top_discounts(limit=4)
+
     return render(request, 'main/index.html', {
         'featured_news': featured_news,
         'first_news': first_news,
         'last_news': last_news,
+        'top_discount_products': top_discount_products,
     })
 
 def products(request):

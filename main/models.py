@@ -55,6 +55,16 @@ class Product(models.Model):
             return round(self.price * (1 - self.discount / 100), 2)
         return self.price
 
+    @classmethod
+    def get_top_discounts(cls, limit=4): # limit - количество продуктов;
+        """Возвращает продукты с максимальными скидками."""
+
+        # Сначала берём все продукты, отсортированные по скидке (убывание)
+        all_products = cls.objects.filter(available=True).order_by('-discount')
+
+        # Берём первые N штук (даже если у них discount = 0)
+        return list(all_products[:limit])
+
 
 class News(models.Model):
     name = models.CharField(max_length=50, verbose_name='Название')
