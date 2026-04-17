@@ -13,11 +13,15 @@ def index(request):
     # Получаем ТОП-4 товара по скидке
     top_discount_products = Product.get_top_discounts(limit=4)
 
+    # Получим обычные новости (не избранные)
+    regular_news = News.get_regular_news(limit=4)
+
     return render(request, 'main/index.html', {
         'featured_news': featured_news,
         'first_news': first_news,
         'last_news': last_news,
         'top_discount_products': top_discount_products,
+        'regular_news': regular_news,
     })
 
 def products(request):

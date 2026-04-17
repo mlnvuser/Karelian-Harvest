@@ -133,38 +133,33 @@
             <hr><h1>Новости</h1><hr>
         </div>
         <div class="articles">
-            <div class="article">
-                <img src="{% static 'img/news/slide1.jpg' %}" alt="">
-                <div class="article-content">
-                    <h2>Название</h2>
-                    <p>Описание статьи...</p>
-                    <p id="data-article">19 марта 2026 г.</p>
+            {% if regular_news %}
+                {% for news in regular_news %}
+                <div class="article">
+                    <div class="article-media">
+                        {% if news.get_media_type == 'video' %}
+                            <video controls width="100%">
+                                <source src="{{ news.video.url }}" type="video/mp4">
+                                Ваш браузер не поддерживает видео.
+                            </video>
+                        {% elif news.get_media_type == 'image' %}
+                            <img src="{{ news.image.url }}" alt="{{ news.name }}">
+                        {% else %}
+                            <img src="{% static 'img/default-news.png' %}" alt="Нет медиафайла">
+                        {% endif %}
+                    </div>
+
+                    <div class="article-content">
+                        <h2>{{ news.name }}</h2>
+                        <p>{{ news.description|slice:':100' }}{% if news.description|length > 100 %}...{% endif %}</p>
+                        <p id="data-article">{{ news.created|date:"d F Y г."|default:"" }}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="article">
-                <img src="{% static 'img/news/slide2.jpg' %}" alt="">
-                <div class="article-content">
-                    <h2>Название</h2>
-                    <p>Описание статьи...</p>
-                    <p id="data-article">19 марта 2026 г.</p>
-                </div>
-            </div>
-            <div class="article">
-                <img src="{% static 'img/news/slide3.jpg' %}" alt="">
-                <div class="article-content">
-                    <h2>Название</h2>
-                    <p>Описание статьи...</p>
-                    <p id="data-article">19 марта 2026 г.</p>
-                </div>
-            </div>
-            <div class="article">
-                <img src="{% static 'img/news/berries.jpg' %}" alt="">
-                <div class="article-content">
-                    <h2>Название</h2>
-                    <p>Описание статьи...</p>
-                    <p id="data-article">19 марта 2026 г.</p>
-                </div>
-            </div>
+                {% endfor %}
+            {% else %}
+                <!-- Если нет обычных новостей -->
+                <p class="no-news">Сейчас нет новых статей.</p>
+            {% endif %}
         </div>
         <div class="more-articles">
             <a href="" class="btn" id="show-all">Показать все</a>

@@ -129,6 +129,21 @@ class News(models.Model):
             published=True
         ).order_by('-created')[:limit])
 
+    @classmethod
+    def get_regular_news(cls, limit=4):
+        """
+        Возвращает обычные новости (не избранные), отсортированные по возрастанию даты.
+        limit: максимальное количество новостей.
+        Возвращает: Python List
+        """
+        return list(
+            cls.objects.filter(
+                is_featured=False,
+                published=True
+            )
+            .order_by('created')[:limit]  # Ascending (старые → новые)
+        )
+
 class ContactInformation(models.Model):
     phone = models.CharField(max_length=20, blank=True, verbose_name='Номер телефона')
     email = models.EmailField(blank=True, verbose_name='Электронная почта'
