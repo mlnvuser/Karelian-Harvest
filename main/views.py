@@ -23,8 +23,13 @@ def index(request):
 def products(request):
     return render(request, template_name='main/products.html')
 
+def product_detail(request, slug):
+    """Детальная страница продукта"""
+    product = get_object_or_404(Product, slug=slug, available=True)
+    return render(request, 'main/product_detail.html', {'product': product})
+
 def news(request):
-    return render(request, template_name='main/products.html')
+    return render(request, template_name='main/news.html')
 
 def news_detail(request, slug):
     news = get_object_or_404(News, slug=slug, published=True)

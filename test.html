@@ -1,0 +1,53 @@
+{% block products %}
+<section class="products-container">
+    <div class="products-title">
+        <hr><h1>Наши продукты</h1><hr>
+    </div>
+    <div class="products">
+        {% if top_discount_products %}
+        <div class="products-menu">
+            {% for product in top_discount_products %}
+            <div class="product">
+                <a href="{{ product.get_absolute_url }}">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    {% else %}
+                        <img src="{% static 'img/products/default.png' %}" alt="Нет изображения">
+                    {% endif %}
+
+                    <!-- Бейджика со скидкой -->
+                    {% if product.discount > 0 %}
+                    <div class="discount-badge">
+                        {{ product.discount }}%
+                    </div>
+                    {% endif %}
+
+                    <!-- Информация о цене -->
+                    <div class="product-info">
+                        <p class="product-name">{{ product.name }}</p>
+
+                        <!-- Если есть скидка -->
+                        {% if product.discount > 0 %}
+                            <div class="price-container">
+                                <span class="old-price">{{ product.price }} ₽</span>
+                                <span class="new-price">{{ product.sell_price }} ₽</span>
+                            </div>
+                        <!-- Если скидки нет -->
+                        {% else %}
+                            <span class="normal-price">{{ product.price }} ₽</span>
+                        {% endif %}
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <!-- Если вообще нет доступных продуктов -->
+        <p class="no-products">Сейчас нет доступных товаров.</p>
+        {% endif %}
+    </div>
+    <div class="show-all">
+        <a href="{% url 'main:product_list' %}" class="btn">Показать все</a>
+    </div>
+</section>
+{% endblock %}

@@ -27,7 +27,7 @@
                     {% elif last_news.get_media_type == 'image' %}
                         <img src="{{ last_news.image.url }}" alt="{{ last_news.name }}">
                     {% else %}
-                        <img src="{% static 'img/default.png' %}" alt="Default">
+                        <img src="{% static 'img/default-news.png' %}" alt="Default">
                     {% endif %}
                 </div>
             </div>
@@ -48,7 +48,7 @@
                 {% elif news.get_media_type == 'image' %}
                     <img src="{{ news.image.url }}" alt="{{ news.name }}">
                 {% else %}
-                    <img src="{% static 'img/default.png' %}" alt="Default">
+                    <img src="{% static 'img/default-news.png' %}" alt="Default">
                 {% endif %}
             </div>
         </div>
@@ -69,7 +69,7 @@
                     {% elif first_news.get_media_type == 'image' %}
                         <img src="{{ first_news.image.url }}" alt="{{ first_news.name }}">
                     {% else %}
-                        <img src="{% static 'img/default.png' %}" alt="Default">
+                        <img src="{% static 'img/default-news.png' %}" alt="Default">
                     {% endif %}
                 </div>
             </div>
@@ -104,23 +104,24 @@
         <hr><h1>Наши продукты</h1><hr>
     </div>
     <div class="products">
+        {% if top_discount_products %}
         <div class="products-menu">
+            {% for product in top_discount_products %}
             <div class="product">
-                <a href=""><img src="{% static 'img/products/Аккураевый мёд.png' %}" alt=""></a>
+                <a href="{{ product.get_absolute_url }}">
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    {% else %}
+                        <img src="{% static 'img/default-product.png' %}" alt="Нет изображения">
+                    {% endif %}
+                </a>
             </div>
-            <div class="product">
-                <a href=""><img src="{% static 'img/products/Брусника.png' %}" alt=""></a>
-            </div>
-            <div class="product">
-                <a href=""><img src="{% static 'img/products/Жимолость.png' %}" alt=""></a>
-            </div>
-            <div class="product">
-                <a href=""><img src="{% static 'img/products/Костомукшский сбор.png' %}" alt=""></a>
-            </div>
+            {% endfor %}
         </div>
+        {% endif %}
     </div>
     <div class="show-all">
-        <a href="" class="btn">Показать все</a>
+        <a href="#" class="btn">Показать все</a>
     </div>
 </section>
 {% endblock %}
