@@ -6,5 +6,89 @@
 {% endblock %}
 
 {% block news %}
+<section class="news-container">
+    <div class="articles-container">
+        <!-- Заголовок -->
+        <div class="article-title">
+            <hr><h1>Все новости</h1><hr>
+        </div>
 
+        <!-- Контейнер с новостями -->
+        <div class="articles">
+            {% for news in news_page.object_list %}
+            <div class="article">
+                <div class="article-media">
+                    {% if news.get_media_type == 'video' %}
+                        <video controls width="100%">
+                            <source src="{{ news.video.url }}" type="video/mp4">
+                            Ваш браузер не поддерживает видео.
+                        </video>
+                    {% elif news.get_media_type == 'image' %}
+                        <img src="{{ news.image.url }}" alt="{{ news.name }}">
+                    {% else %}
+                        <img src="{% static 'img/default-news.png' %}" alt="Нет медиафайла">
+                    {% endif %}
+                </div>
+
+                <div class="article-content">
+                    <a href="{{ news.get_absolute_url }}" class="article-title-link">
+                        <h2>{{ news.name }}</h2>
+                    </a>
+
+                    <p class="article-description">
+                        {{ news.description|slice:':200' }}{% if news.description|length > 250 %}...{% endif %}
+                    </p>
+
+                    <div class="article-meta">
+                        <span class="date">{{ news.created|date:"d F Y г., H:i" }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Пагинация -->
+        <div class="paginator">
+             {% if paginator.num_pages > 1 %}
+                <nav class="pagination" aria-label="Пагинация новостей">
+
+                    <!-- Кнопка "Назад" -->
+                    {% if news_page.has_previous %}
+                        <a href="?page={{ news_page.previous_page_number }}" class="pagination-btn">← Назад</a>
+                    {% else %}
+                        <span class="pagination-btn disabled">← Назад</span>
+                    {% endif %}
+
+                    <!-- Номера страниц -->
+                    <div class="pagination-numbers">
+                        {% for num in paginator.page_range %}
+                            {% if num == news_page.number %}
+                                <span class="pagination-page active">{{ num }}</span>
+                            {% elif num > news_page.number|add:'-3' and num < news_page.number|add:'3' %}
+                                <a href="?page={{ num }}" class="pagination-page">{{ num }}</a>
+                            {% elif num == 1 or num == paginator.num_pages %}
+                                <a href="?page={{ num }}" class="pagination-page">{{ num }}</a>
+                            {% elif num == news_page.number|add:'-3'|add:'1' or num == news_page.number|add:'3'|add:'-1' %}
+                                <span class="pagination-dots">...</span>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
+                    <!-- Кнопка "Вперёд" -->
+                    {% if news_page.has_next %}
+                        <a href="?page={{ news_page.next_page_number }}" class="pagination-btn">Вперёд →</a>
+                    {% else %}
+                        <span class="pagination-btn disabled">Вперёд →</span>
+                    {% endif %}
+                </nav>
+             {% endif %}
+
+        <!-- Количество новостей -->
+            <div class="results-info">
+                Показано: {{ news_page.start_index }} — {{ news_page.end_index }} из {{ paginator.count }} новостей
+            </div>
+        </div>
+
+    </div>
+</section>
 {% endblock %}

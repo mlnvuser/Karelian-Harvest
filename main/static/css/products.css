@@ -16,24 +16,44 @@
     font-size: 1.2em;
 }
 
+.filter-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2vmax;
+    flex-wrap: wrap;
+}
+
+.filter-form select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    min-width: 180px;
+    cursor: pointer;
+}
+
+.filter-form select:focus {
+    outline: none;
+    border-color: #8e3c0f;
+}
+
 .products{
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 3vmax;
     background:
   linear-gradient(to top, rgba(255, 255, 255, 0) 95%, #fff),
-  linear-gradient(to bottom, rgba(255, 255, 255, 0) 95%, #fff),
-  url('../img/table.png');
-    background-size: cover;
+  linear-gradient(to bottom, rgba(255, 255, 255, 0) 95%, #fff);
 }
 
 .products-menu{
     display: flex;
     flex-wrap: wrap; /* Для перехода на два ряда */
     width: 70%;
-    height: 350px;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -41,8 +61,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5%;
+    gap: 1.5vmax;
     width: 20%;
+    margin: 1vmax;
+    margin-bottom: 5vmax;
 }
 
 .product img{
@@ -56,10 +78,22 @@
     transform: scale(1.05); /* При наведении изображение увеличивается */
 }
 
-#show-all{
-
+.price-block{
+    font-weight: bold;
 }
 
+.discount{
+    color: gray;
+    text-decoration: line-through;
+}
+
+.price{
+    color: #8e3c0f;
+}
+
+.unavailable img {
+    opacity: 0.5;
+}
 
 /* МЕДИА */
 
@@ -67,19 +101,10 @@
 @media (max-width: 768px) {
     .products-menu{
         width: 80%;
-        height: 500px;
-    }
-
-    .products{
-        background:
-  linear-gradient(to top, rgba(255, 255, 255, 0) 95%, #fff),
-  linear-gradient(to bottom, rgba(255, 255, 255, 0) 95%, #fff),
-  url('../img/table.png');
-        background-size: cover;
     }
 
     .product {
-        width: 45%; /* Для двух изображений в ряду на маленьких экранах */
+        width: 40%; /* Для двух изображений в ряду на маленьких экранах */
     }
 
 

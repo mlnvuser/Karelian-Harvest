@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Product, Category, News
 
 
@@ -14,7 +15,7 @@ def index(request):
     top_discount_products = Product.get_top_discounts(limit=4)
 
     # Получим обычные новости (не избранные)
-    regular_news = News.get_regular_news(limit=4)
+    regular_news = News.get_regular_news(limit=2)
 
     return render(request, 'main/index.html', {
         'featured_news': featured_news,
@@ -25,7 +26,37 @@ def index(request):
     })
 
 def products(request):
-    return render(request, template_name='main/products.html')
+
+    # Получаем текущие параметры из URL (если есть)
+    category_slug = request.GET.get('category', '')
+    show_discount = request.GET.get('discount')  # 'on' если чекбокс выбран
+    show_available = request.GET.get('available')  # 'on' если чекбокс выбран
+
+    products = Product.objects.all()
+
+    # 1. Фильтр по категориям
+    if category_slug:
+        products = products.filter(category__slug=category_slug)
+
+    # 2. Фильтр по скидкам
+    if show_discount == 'on':
+        products = products.filter(discount__gt=0)
+
+    # 3. Фильтр по наличию
+    if show_available == 'on':
+        products = products.filter(available=True)
+
+    # Передаём список категорий для dropdown
+    categories = Category.objects.all().order_by('name')
+
+
+    return render(request, 'main/products.html', {
+        'products': list(products.order_by('name')),
+        'categories': categories,
+        'current_category': category_slug,  # Для подсветки активной категории
+        'show_discount': show_discount,      # Для проверки состояния чекбокса
+        'show_available': show_available,   # Для проверки состояния чекбокса
+    })
 
 def product_detail(request, slug):
     """Детальная страница продукта"""
@@ -33,7 +64,30 @@ def product_detail(request, slug):
     return render(request, 'main/product_detail.html', {'product': product})
 
 def news(request):
-    return render(request, template_name='main/news.html')
+
+    all_news = list(News.objects.filter(published=True, ).order_by('-created'))
+
+    # Создаем объект пагинатора
+    paginator = Paginator(all_news, 5)  # 5 новостей на страницу
+
+    # Получаем номер страницы из URL (по умолчанию 1)
+    page_number = request.GET.get('page', 1)
+
+    try:
+        news_page = paginator.page(page_number)
+    except PageNotAnInteger:
+        # Если page не число, показываем первую страницу
+        news_page = paginator.page(1)
+    except EmptyPage:
+        # Если page больше чем максимальное количество страниц, показываем последнюю
+        news_page = paginator.page(paginator.num_pages)
+
+    return render(request, 'main/news.html', {
+        'news_page': news_page,
+        'paginator': paginator,
+        'is_first_page': page_number == 1,
+        'is_last_page': page_number == paginator.num_pages,
+    })
 
 def news_detail(request, slug):
     news = get_object_or_404(News, slug=slug, published=True)
