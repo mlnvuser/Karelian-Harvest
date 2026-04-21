@@ -1,21 +1,36 @@
 {% extends 'main/base.html' %}
 {% load static %}
 
+{% block styles %}
+	<link rel="stylesheet" href="{% static 'css/product-detail.css' %}">
+{% endblock %}
+
 {% block content %}
 <section class="product-detail">
-    <div class="container">
-        <h1>{{ product.name }}</h1>
-
+    <div class="detail">
         {% if product.image %}
             <img src="{{ product.image.url }}" alt="{{ product.name }}">
         {% else %}
             <img src="{% static 'img/default-product.png' %}" alt="Нет изображения">
         {% endif %}
-
-        <p>{{ product.description|linebreaksbr }}</p>
-
-        <!-- Кнопка обратно -->
-        <a href="{% url 'main:index' %}" class="btn">На главную</a>
+        <div class="product-content">
+            <h2 class="product-name">{{ product.name }}</h2>
+            {% if product.available %}
+                {% if product.discount %}
+                    <div class="product-price">
+                        <p class="old-price">{{ product.price|floatformat:"0" }}₽</p>
+                        <p class="sell-price">{{ product.sell_price|floatformat:"0" }}₽</p>
+                    </div>
+                {% else %}
+                    <p class="sell-price">{{ product.price|floatformat:"0" }}₽</p>
+                {% endif %}
+            {% else %}
+                <p class="unavailable">Нет в наличии</p>
+            {% endif %}
+            <p>{{ product.description|linebreaksbr }}</p>
+        </div>
     </div>
+    <!-- Кнопка обратно -->
+    <a href="{% url 'main:products' %}" class="btn">К продуктам</a>
 </section>
 {% endblock %}

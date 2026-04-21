@@ -60,7 +60,7 @@ def products(request):
 
 def product_detail(request, slug):
     """Детальная страница продукта"""
-    product = get_object_or_404(Product, slug=slug, available=True)
+    product = get_object_or_404(Product, slug=slug)
     return render(request, 'main/product_detail.html', {'product': product})
 
 def news(request):

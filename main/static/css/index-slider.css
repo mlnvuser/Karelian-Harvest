@@ -65,10 +65,12 @@
 
 .slide-img img:hover {
   transform: scale(1.05); /* Увеличение картинки на 5% */
+  cursor: pointer; /* Курсор в виде руки при наведении */
 }
 
 .slide-img video:hover {
   transform: scale(1.05); /* Увеличение картинки на 5% */
+  cursor: pointer; /* Курсор в виде руки при наведении */
 }
 
 .slide-content {
@@ -84,6 +86,16 @@
   color: #8e3c0f; /* Красный цвет текста */
   text-decoration: none; /* Убирает подчёркивание */
   font-weight: bold; /* Жирный шрифт */
+}
+
+.slide-content h2:hover{
+  text-decoration: underline;
+  cursor: pointer; /* Курсор в виде руки при наведении */
+}
+
+.slide-content a:hover{
+  text-decoration: underline;
+  cursor: pointer; /* Курсор в виде руки при наведении */
 }
 
 /* ===== Стрелки навигации ===== */

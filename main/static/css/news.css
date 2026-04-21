@@ -52,10 +52,12 @@
 
 .article-media img:hover {
     transform: scale(1.05); /* При наведении изображение увеличивается */
+    cursor: pointer; /* Курсор в виде руки при наведении */
 }
 
 .article-media video:hover{
     transform: scale(1.05); /* При наведении изображение увеличивается */
+    cursor: pointer; /* Курсор в виде руки при наведении */
 }
 
 .article-content{

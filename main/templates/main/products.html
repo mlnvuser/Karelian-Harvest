@@ -61,15 +61,15 @@
                         {% if product.available %}
                             {% if product.discount > 0 %}
                                 <!-- Есть скидка -->
-                                <span class="discount">{{ product.price|floatformat:"0" }}₽</span>
-                                <span class="price">{{ product.sell_price|floatformat:"0" }}₽</span>
+                                <span class="old-price">{{ product.price|floatformat:"0" }}₽</span>
+                                <span class="sell-price">{{ product.sell_price|floatformat:"0" }}₽</span>
                             {% else %}
                                 <!-- Нет скидки -->
-                                <span class="price">{{ product.price|floatformat:"0" }}₽</span>
+                                <span class="sell-price">{{ product.price|floatformat:"0" }}₽</span>
                             {% endif %}
                         {% else %}
                             <!-- Нет в наличии -->
-                            <span class="unavailable-text">Нет в наличии</span>
+                            <span class="unavailable">Нет в наличии</span>
                         {% endif %}
                     </div>
 

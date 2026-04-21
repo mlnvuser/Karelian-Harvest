@@ -27,9 +27,25 @@ button {
   font: inherit;
   color: inherit;
   background-color: transparent;
-  /* отображаем курсор в виде руки при наведении; некоторые
-  считают, что необходимо оставлять стрелочный вид для кнопок */
   cursor: pointer;
+}
+
+.old-price{
+    color: gray;
+    text-decoration: line-through;
+    font-weight: bold;
+    font-size: 1vmax;
+}
+
+.sell-price{
+    color: #8e3c0f;
+    font-weight: bold;
+    font-size: 1.5vmax;
+}
+
+.unavailable{
+    color: gray;
+    font-weight: bold;
 }
 
 .btn{
@@ -47,3 +63,4 @@ button {
 .btn:hover {
     transform: scale(1.05); /* При наведении изображение увеличивается */
 }
+

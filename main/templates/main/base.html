@@ -23,9 +23,9 @@
             </div>
             <div class="menu">
                 <div class="nav-menu">
-                    <a href=""><h3>Главная</h3></a>
-                    <a href=""><h3>Продукты</h3></a>
-                    <a href=""><h3>Новости</h3></a>
+                    <a href="{% url 'main:index' %}"><h3>Главная</h3></a>
+                    <a href="{% url 'main:products' %}"><h3>Продукты</h3></a>
+                    <a href="{% url 'main:news' %}"><h3>Новости</h3></a>
                     <a href=""><h3>Контакты</h3></a>
                 </div>
                 <div class="buy">
@@ -64,6 +64,7 @@
 
 </section>
 
+{% block content %}{% endblock %}
 {% block slider %}{% endblock %}
 {% block products %}{% endblock %}
 {% block news %}{% endblock %}

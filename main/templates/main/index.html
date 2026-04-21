@@ -17,7 +17,7 @@
             {% if last_news %}
             <div class="slide clone" data-original-index="0">
                 <div class="slide-content">
-                    <h2>{{ last_news.name }}</h2>
+                    <a href="{{ last_news.get_absolute_url }}"><h2>{{ last_news.name }}</h2></a>
                     <p>{{ last_news.description|slice:':150' }}{% if last_news.description|length > 150 %}...{% endif %}</p>
                     <a href="{{ last_news.get_absolute_url }}">Подробнее</a>
                 </div>
