@@ -76,6 +76,17 @@
     text-decoration: underline;
 }
 
+.article-meta{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.article-meta a{
+    color: white;
+    font-weight: normal;
+}
+
 .paginator{
     display: flex;
     flex-direction: column;

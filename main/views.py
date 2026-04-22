@@ -90,5 +90,19 @@ def news(request):
     })
 
 def news_detail(request, slug):
+    """Детальная страница новости"""
+    # Получаем новость по slug, только опубликованные
     news = get_object_or_404(News, slug=slug, published=True)
-    return render(request, 'main/news_detail.html', {'news': news})
+
+    # Соседние новости (для перелистывания)
+    all_news = list(News.objects.filter(published=True).order_by('-created'))
+    current_index = all_news.index(news) if news in all_news else 0
+
+    prev_news = all_news[current_index + 1] if current_index < len(all_news) - 1 else None
+    next_news = all_news[current_index - 1] if current_index > 0 else None
+
+    return render(request, 'main/news_detail.html', {
+        'news': news,
+        'prev_news': prev_news,
+        'next_news': next_news,
+    })

@@ -152,7 +152,7 @@
                     <div class="article-content">
                         <a href=""><h2>{{ news.name }}</h2></a>
                         <p>{{ news.description|slice:':100' }}{% if news.description|length > 100 %}...{% endif %}</p>
-                        <p id="data-article">{{ news.created|date:"d F Y г."|default:"" }}</p>
+                        <p id="data-article">📅 {{ news.created|date:"d F Y г."|default:"" }}</p>
                     </div>
                 </div>
                 {% endfor %}

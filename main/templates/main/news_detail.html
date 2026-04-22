@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Посмотрим</title>
-</head>
-<body>
+{% extends 'main/base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block styles %}
+	<link rel="stylesheet" href="{% static 'css/news-detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="news-section">
+    <div class="news-detail">
+        <div class="news-media">
+            {% if news.get_media_type == 'video' %}
+                <video controls width="100%"><source src="{{ news.video.url }}" type="video/mp4">
+                    Ваш браузер не поддерживает видео.</video>
+            {% elif news.get_media_type == 'image' %}
+                <img src="{{ news.image.url }}" alt="{{ news.name }}">
+            {% else %}
+                <img src="{% static 'img/default-news.png' %}" alt="Нет медиафайла">
+            {% endif %}
+    </div>
+        <div class="news-content">
+            <h2 class="news-name">{{ news.name }}</h2>
+            <span class="reading-time">⏱ Примерное время чтения
+                {{ news.description|wordcount|floatformat:0 }} минут.</span>
+            <p class="description">{{ news.description|linebreaksbr }}</p>
+            <span class="news-date" itemprop="datePublished">
+                    📅 {{ news.created|date:"d F Y г." }}
+            </span>
+            {% if news.updated != news.created %}
+                <span class="news-updated">
+                    🕐 Обновлено: {{ news.updated|date:"d F Y г." }}
+                </span>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

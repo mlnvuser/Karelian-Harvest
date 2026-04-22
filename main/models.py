@@ -146,12 +146,13 @@ class News(models.Model):
 
 class ContactInformation(models.Model):
     phone = models.CharField(max_length=20, blank=True, verbose_name='Номер телефона')
-    email = models.EmailField(blank=True, verbose_name='Электронная почта'
-    )
+    email = models.EmailField(blank=True, verbose_name='Электронная почта')
     telegram = models.URLField(max_length=200, blank=True, verbose_name='Telegram')
+    messenger_max = models.URLField(max_length=200, blank=True, verbose_name='Мессенджер MAX')
     instagram = models.URLField(max_length=200, blank=True, verbose_name='Instagram')
     vk = models.URLField(max_length=200, blank=True, verbose_name='ВКонтакте')
     address = models.TextField(blank=True, verbose_name='Адрес торговли')
+    info = models.TextField(blank=True, verbose_name='Дополнительная информация')
 
     class Meta:
         verbose_name = 'Контактная информация'
