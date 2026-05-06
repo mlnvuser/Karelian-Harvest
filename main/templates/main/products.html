@@ -13,35 +13,40 @@
     </div>
     <div class="products-filter-bar">
         <form action="{% url 'main:products' %}" method="get" class="filter-form">
+            <div class="form-box">
+                <!-- Фильтр по категориям -->
+                <select name="category" onchange="this.form.submit()">
+                    <option value="">Все категории</option>
+                    {% for category in categories %}
+                        <option value="{{ category.slug }}"
+                                {% if current_category == category.slug %}selected{% endif %}>
+                            {{ category.name }}
+                        </option>
+                    {% endfor %}
+                </select>
 
-            <!-- Фильтр по категориям -->
-            <select name="category" onchange="this.form.submit()">
-                <option value="">Все категории</option>
-                {% for category in categories %}
-                    <option value="{{ category.slug }}"
-                            {% if current_category == category.slug %}selected{% endif %}>
-                        {{ category.name }}
-                    </option>
-                {% endfor %}
-            </select>
+                <!-- Чекбокс "Со скидкой" -->
+                <label class="checkbox-label">
+                    <input type="checkbox" name="discount" value="on"
+                           {% if show_discount == 'on' %}checked{% endif %}>
+                    Со скидкой
+                </label>
 
-            <!-- Чекбокс "Со скидкой" -->
-            <label class="checkbox-label">
-                <input type="checkbox" name="discount" value="on"
-                       {% if show_discount == 'on' %}checked{% endif %}>
-                Со скидкой
-            </label>
+                <!-- Чекбокс "В наличии" -->
+                <label class="checkbox-label">
+                    <input type="checkbox" name="available" value="on"
+                           {% if show_available == 'on' %}checked{% endif %}>
+                    В наличии
+                </label>
+            </div>
 
-            <!-- Чекбокс "В наличии" -->
-            <label class="checkbox-label">
-                <input type="checkbox" name="available" value="on"
-                       {% if show_available == 'on' %}checked{% endif %}>
-                В наличии
-            </label>
+            <div class="form-btn">
+                <!-- Кнопка сброса -->
+                <button type="submit" class="btn">Применить</button>
+                <a href="{% url 'main:products' %}" class="btn">Сбросить</a>
+            </div>
 
-            <!-- Кнопка сброса -->
-            <button type="submit" class="btn">Применить</button>
-            <a href="{% url 'main:products' %}" class="btn">Сбросить</a>
+
         </form>
     </div>
     <div class="products">
@@ -53,7 +58,7 @@
                         {% if product.image %}
                             <img src="{{ product.image.url }}" alt="{{ product.name }}">
                         {% else %}
-                            <img src="{% static 'img/default-product.png' %}" alt="Нет изображения">
+                            <img src="{% static 'img/products/default-product.png' %}" alt="Нет изображения">
                         {% endif %}
                     </a>
                         <!-- Блок с ценами / статусом -->

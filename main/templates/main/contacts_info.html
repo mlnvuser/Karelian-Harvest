@@ -1,0 +1,62 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block styles %}
+	<link rel="stylesheet" href="{% static 'css/contacts_info.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="contacts-container">
+    <div class="contacts-title">
+        <hr><h1>Контакты</h1><hr>
+    </div>
+    <div class="contacts-info">
+        <div class="info">
+            {% if contact.phone %}
+            <span class="img-info"><img src="{% static 'img/icons/phone.png' %}"
+                                                                   alt="phone"><b>Контактный телефон:</b
+            >{{ contact.phone }}</span>
+            {% endif %}
+            {% if contact.email %}
+                <span class="img-info"><img src="{% static 'img/icons/email.png' %}" alt="email"><b>Электронная
+                    почта:</b>{{ contact.email }}</span>
+            {% endif %}
+            {% if contact.telegram %}
+                <span class="img-info"><img src="{% static 'img/icons/telegram.png' %}"
+                                            alt="telegram"><b>Telegram:</b><a href=
+                                                                                                             "{{ contact.telegram }}">{{ contact.telegram }}</a></span>
+            {% endif %}
+            {% if contact.messenger_max %}
+                <span class="img-info"><img src="{% static 'img/icons/max.png' %}" alt="messanger-max"><b>MAX:</b><a
+                        href=
+                                                                                                             "{{ contact.messenger_max }}">{{ contact.messenger_max }}</a></span>
+            {% endif %}
+            {% if contact.instagram %}
+                <span class="img-info"><img src="{% static 'img/icons/inst.png' %}" alt="instagram"><b>Instagram:</b><a
+                        href=
+                                                                                                          "{{ contact.instagram }}">{{ contact.instagram }}</a></span>
+            {% endif %}
+            {% if contact.vk %}
+                <span class="img-info"><img src="{% static 'img/icons/vk.png' %}" alt="vk"><b>VK:</b><a href=
+                                                                                                           "{{ contact.vk }}"
+                >{{ contact.vk }}</a></span>
+            {% endif %}
+            {% if contact.address %}
+                <span class="img-info"><img src="{% static 'img/icons/geo.png' %}" alt="addres"><b>Адрес торговли:</b
+                >{{ contact.address}}</span>
+            {% endif %}
+            {% if contact.info %}
+                <span class="img-info">Доп. информация: {{ contact.info }}</span>
+            {% endif %}
+        </div>
+        <div class="yandex">
+            {% if contact.yandex_widget %}
+                {% autoescape off %}
+                    {{ contact.yandex_widget }}
+                {% endautoescape %}
+            {% endif %}
+        </div>
+    </div>
+
+</section>
+{% endblock %}

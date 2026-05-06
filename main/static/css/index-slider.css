@@ -30,7 +30,7 @@
   flex: 0 0 70%; /* Не растягивается, не сжимается, базовая ширина 70% */
   width: 70%; /* Явная ширина 70% контейнера */
   margin: 0; /* Отступы слева и справа по 1.5%, итого зазор между слайдами 3% */
-  height: 60vh; /* Фиксированная высота слайда */
+  height: 70vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -75,11 +75,16 @@
 
 .slide-content {
   width: 35%; /* Занимает 35% ширины слайда */
-  font-size: 1vmax;
+  font-size: 1.1vmax;
   padding: 2vmax; /* Внутренние отступы со всех сторон */
   display: flex; /* Flexbox для вертикального расположения текста */
   flex-direction: column; /* Элементы выстраиваются сверху вниз */
   justify-content: center; /* Вертикальное центрирование содержимого */
+  gap: 1.5vmax;
+}
+
+#name-news{
+  color: #1d1d1d;
 }
 
 .slide-content a {
@@ -176,14 +181,16 @@
 
   .slide-img {
     width: 100%; /* На всю ширину слайда */
-    height: 75%; /* 60% высоты слайда */
+    height: 65%; /* 60% высоты слайда */
     border-radius: 8px 8px 0 0; /* Скругление только сверху */
   }
 
   .slide-content {
     width: 100%; /* На всю ширину */
-    height: 25%; /* 40% высоты слайда */
+    height: 35%; /* 40% высоты слайда */
     box-sizing: border-box;
+    font-size: 1.4vmax;
+    gap: 2vmax;
   }
 
   .arrow {

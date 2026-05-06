@@ -22,8 +22,7 @@
 .detail img {
     display: flex;
     align-items: center;
-    width: 40%;
-    height: 100%;
+    width: 20vmax;
     transition: transform 0.3s ease;
 }
 
@@ -58,6 +57,10 @@
     gap: 1vmax;
 }
 
+.product-description{
+    font-size: 1vmax;
+}
+
 .btn{
     margin-bottom: 2vmax;
 }
@@ -84,13 +87,17 @@
         justify-content: center;
     }
 
-    .detail-img{
+    .detail img{
         width: 100%;
-        height: 300px;
+        height: auto;
     }
 
     .product-content {
         width: 100%;
+    }
+
+    .product-description{
+        font-size: 1.4vmax;
     }
 
 }

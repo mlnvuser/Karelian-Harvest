@@ -15,21 +15,21 @@
 <header class="head-container">
     <nav class="nav-container">
         <div class="logo">
-            <a href=""><img id="nav-icon" src="{% static 'img/logo.png' %}" alt=""></a>
+            <a href="{% url 'main:index' %}"><img id="nav-icon" src="{% static 'img/main/logo.png' %}" alt=""></a>
         </div>
         <div class="navigation">
             <div class="name">
-                <h1>Карельский Урожай <span><sup style="font-size: 10px; font-family: sans-serif">®</sup></span></h1>
+                <h1>Карельский Урожай <span><sup class="trademark">®</sup></span></h1>
             </div>
             <div class="menu">
                 <div class="nav-menu">
                     <a href="{% url 'main:index' %}"><h3>Главная</h3></a>
                     <a href="{% url 'main:products' %}"><h3>Продукты</h3></a>
                     <a href="{% url 'main:news' %}"><h3>Новости</h3></a>
-                    <a href=""><h3>Контакты</h3></a>
+                    <a href="{% url 'main:contacts' %}"><h3>Контакты</h3></a>
                 </div>
                 <div class="buy">
-                    <a href="" id="buy"><h4>Купить</h4></a>
+                    <a href="{% url 'main:buy' %}" id="buy"><h4>Купить</h4></a>
                 </div>
             </div>
         </div>
@@ -54,11 +54,11 @@
         </div>
 
         <div class="mobile-menu-links">
-            <a href=""><h3>Главная</h3></a>
-            <a href=""><h3>Продукты</h3></a>
-            <a href=""><h3>Новости</h3></a>
-            <a href=""><h3>Контакты</h3></a>
-            <a href="" class="mobile-buy-btn"><h4>Купить</h4></a>
+            <a href="{% url 'main:index' %}"><h3>Главная</h3></a>
+            <a href="{% url 'main:products' %}"><h3>Продукты</h3></a>
+            <a href="{% url 'main:news' %}"><h3>Новости</h3></a>
+            <a href="{% url 'main:contacts' %}"><h3>Контакты</h3></a>
+            <a href="{% url 'main:buy' %}" class="mobile-buy-btn"><h4>Купить</h4></a>
         </div>
     </div>
 
@@ -70,7 +70,7 @@
 {% block news %}{% endblock %}
 
 <footer class="foot-container">
-    <p>2025 Карельский Урожай <span><sup style="font-size: 10px; font-family: sans-serif">®</sup></span></p>
+    <p>2025 Карельский Урожай <span><sup class="trademark">®</sup></span></p>
 </footer>
 
 <script src="{% static 'js/slider.js' %}"></script>

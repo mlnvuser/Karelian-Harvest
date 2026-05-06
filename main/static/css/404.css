@@ -1,0 +1,35 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+
+.error-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3vmax;
+    width: 70%;
+    margin: 2vmax auto;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 4vmax 0;
+    overflow: hidden;
+}
+
+.error-section h2{
+    margin-top: -0.1em;
+    font-size: 7vmax;
+}
+
+.error-section p{
+    font-size: 2vmax;
+}
+
+@media (max-width: 768px) {
+
+    .error-section{
+        width: 80%;
+    }
+}

@@ -1,5 +1,6 @@
 {% extends 'main/base.html' %}
 {% load static %}
+{% load filters %}
 
 {% block styles %}
     <link rel="stylesheet" href="{% static 'css/index-slider.css' %}">
@@ -17,17 +18,17 @@
             {% if last_news %}
             <div class="slide clone" data-original-index="0">
                 <div class="slide-content">
-                    <a href="{{ last_news.get_absolute_url }}"><h2>{{ last_news.name }}</h2></a>
-                    <p>{{ last_news.description|slice:':150' }}{% if last_news.description|length > 150 %}...{% endif %}</p>
+                    <h2><a href="{{ last_news.get_absolute_url }}" id="name-news">{{ last_news.name }}</a></h2>
+                    <p>{{ last_news.description|slice:':100' }}{% if last_news.description|length > 100 %}...{% endif %}</p>
                     <a href="{{ last_news.get_absolute_url }}">Подробнее</a>
                 </div>
                 <div class="slide-img">
                     {% if last_news.get_media_type == 'video' %}
-                        <video muted loop autoplay loading="lazy"><source src="{{ last_news.video.url }}"></video>
+                        <a href="{{ last_news.get_absolute_url }}"><video muted loop autoplay loading="lazy"><source src="{{ last_news.video.url }}"></video></a>
                     {% elif last_news.get_media_type == 'image' %}
-                        <img src="{{ last_news.image.url }}" alt="{{ last_news.name }}">
+                        <a href="{{ last_news.get_absolute_url }}"><img src="{{ last_news.image.url }}" alt="{{ last_news.name }}"></a>
                     {% else %}
-                        <img src="{% static 'img/default-news.png' %}" alt="Default">
+                        <a href="{{ last_news.get_absolute_url }}"><img src="{% static 'img/news/default-news.png' %}" alt="Default"></a>
                     {% endif %}
                 </div>
             </div>
@@ -38,17 +39,17 @@
         {% for news in featured_news %}
         <div class="slide" data-original-index="{{ forloop.counter0 }}">
             <div class="slide-content">
-                <h2>{{ news.name }}</h2>
-                <p>{{ news.description|slice:':150' }}{% if news.description|length > 150 %}...{% endif %}</p>
+                <h2><a href="{{ news.get_absolute_url }}" id="name-news">{{ news.name }}</a></h2>
+                <p>{{ news.description|slice:':100' }}{% if news.description|length > 100 %}...{% endif %}</p>
                 <a href="{{ news.get_absolute_url }}">Подробнее</a>
             </div>
             <div class="slide-img">
                 {% if news.get_media_type == 'video' %}
-                    <video muted loop autoplay loading="lazy"><source src="{{ news.video.url }}"></video>
+                    <a href="{{ news.get_absolute_url }}"><video muted loop autoplay loading="lazy"><source src="{{ news.video.url }}"></video></a>
                 {% elif news.get_media_type == 'image' %}
-                    <img src="{{ news.image.url }}" alt="{{ news.name }}">
+                    <a href="{{ news.get_absolute_url }}"><img src="{{ news.image.url }}" alt="{{ news.name }}"></a>
                 {% else %}
-                    <img src="{% static 'img/default-news.png' %}" alt="Default">
+                    <a href="{{ news.get_absolute_url }}"><img src="{% static 'img/news/default-news.png' %}" alt="Default"></a>
                 {% endif %}
             </div>
         </div>
@@ -59,17 +60,17 @@
             {% if first_news %}
             <div class="slide clone" data-original-index="{{ featured_news|length }}">
                 <div class="slide-content">
-                    <h2>{{ first_news.name }}</h2>
-                    <p>{{ first_news.description|slice:':150' }}{% if first_news.description|length > 150 %}...{% endif %}</p>
+                    <h2><a href="{{ first_news.get_absolute_url }}" id="name-news">{{ first_news.name }}</a></h2>
+                    <p>{{ first_news.description|slice:':100' }}{% if first_news.description|length > 100 %}...{% endif %}</p>
                     <a href="{{ first_news.get_absolute_url }}">Подробнее</a>
                 </div>
                 <div class="slide-img">
                     {% if first_news.get_media_type == 'video' %}
-                        <video muted loop autoplay loading="lazy"><source src="{{ first_news.video.url }}"></video>
+                        <a href="{{ first_news.get_absolute_url }}"><video muted loop autoplay loading="lazy"><source src="{{ first_news.video.url }}"></video></a>
                     {% elif first_news.get_media_type == 'image' %}
-                        <img src="{{ first_news.image.url }}" alt="{{ first_news.name }}">
+                        <a href="{{ first_news.get_absolute_url }}"><img src="{{ first_news.image.url }}" alt="{{ first_news.name }}"></a>
                     {% else %}
-                        <img src="{% static 'img/default-news.png' %}" alt="Default">
+                        <a href="{{ first_news.get_absolute_url }}"><img src="{% static 'img/news/default-news.png' %}" alt="Default"></a>
                     {% endif %}
                 </div>
             </div>
@@ -112,7 +113,7 @@
                     {% if product.image %}
                         <img src="{{ product.image.url }}" alt="{{ product.name }}">
                     {% else %}
-                        <img src="{% static 'img/default-product.png' %}" alt="Нет изображения">
+                        <img src="{% static 'img/products/default-product.png' %}" alt="Нет изображения">
                     {% endif %}
                 </a>
             </div>
@@ -121,7 +122,7 @@
         {% endif %}
     </div>
     <div class="show-all">
-        <a href="#" class="btn">Показать все</a>
+        <a href="{% url 'main:products' %}" class="btn" id="show-all-products">Показать все</a>
     </div>
 </section>
 {% endblock %}
@@ -138,21 +139,23 @@
                 <div class="article">
                     <div class="article-media">
                         {% if news.get_media_type == 'video' %}
-                            <a href=""><video controls width="100%">
+                            <a href="{{ news.get_absolute_url }}"><video muted loop autoplay loading="lazy">
                                 <source src="{{ news.video.url }}" type="video/mp4">
                                 Ваш браузер не поддерживает видео.
                             </video></a>
                         {% elif news.get_media_type == 'image' %}
-                            <a href=""><img src="{{ news.image.url }}" alt="{{ news.name }}"></a>
+                            <a href="{{ news.get_absolute_url }}"><img src="{{ news.image.url }}" alt=
+                                    "{{ news.name }}"></a>
                         {% else %}
-                            <a href=""><img src="{% static 'img/default-news.png' %}" alt="Нет медиафайла"></a>
+                            <a href="{{ news.get_absolute_url }}"><img src="{% static 'img/news/default-news.png' %}"
+                                                                       alt="Нет медиафайла"></a>
                         {% endif %}
                     </div>
 
                     <div class="article-content">
-                        <a href=""><h2>{{ news.name }}</h2></a>
+                        <a href="{{ news.get_absolute_url }}"><h2>{{ news.name }}</h2></a>
                         <p>{{ news.description|slice:':100' }}{% if news.description|length > 100 %}...{% endif %}</p>
-                        <p id="data-article">📅 {{ news.created|date:"d F Y г."|default:"" }}</p>
+                        <p id="data-article">📅 {{ news.created|ru_month:'True'}}</p>
                     </div>
                 </div>
                 {% endfor %}
@@ -162,7 +165,7 @@
             {% endif %}
         </div>
         <div class="more-articles">
-            <a href="" class="btn" id="show-all">Показать все</a>
+            <a href="{% url 'main:news' %}" class="btn" id="show-all-news">Показать все</a>
         </div>
     </div>
 </article>

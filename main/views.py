@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Product, Category, News
+from .models import Product, Category, News, ContactInformation
 
 
 def index(request):
@@ -106,3 +106,25 @@ def news_detail(request, slug):
         'prev_news': prev_news,
         'next_news': next_news,
     })
+
+def contacts(request):
+    """Страница контактов"""
+    contact_info = ContactInformation.get_info()
+    return render(request, 'main/contacts_info.html', {'contact': contact_info})
+
+def buy(request):
+    """Страница оформления покупки через мессенджеры"""
+    contact = ContactInformation.get_info()
+    return render(request, 'main/buy.html', {'contact': contact})
+
+def error_404(request, exception=None):
+    """Обработчик ошибки 404"""
+
+    return render(
+        request,
+        'main/404.html',
+        {
+            'request': request,  # Передать запрос для доступа к статику
+        },
+        status=404
+    )

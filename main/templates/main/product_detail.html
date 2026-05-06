@@ -11,7 +11,7 @@
         {% if product.image %}
             <img src="{{ product.image.url }}" alt="{{ product.name }}">
         {% else %}
-            <img src="{% static 'img/default-product.png' %}" alt="Нет изображения">
+            <img src="{% static 'img/products/default-product.png' %}" alt="Нет изображения">
         {% endif %}
         <div class="product-content">
             <h2 class="product-name">{{ product.name }}</h2>
@@ -27,7 +27,7 @@
             {% else %}
                 <p class="unavailable">Нет в наличии</p>
             {% endif %}
-            <p>{{ product.description|linebreaksbr }}</p>
+            <p class="product-description">{{ product.description|linebreaksbr }}</p>
         </div>
     </div>
     <!-- Кнопка обратно -->

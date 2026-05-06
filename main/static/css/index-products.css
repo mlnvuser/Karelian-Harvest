@@ -13,7 +13,7 @@
     align-items: center;
     width: 70%;
     margin: 2vmax 0;
-    font-size: 1.2vmax;
+    font-size: 1.5vmax;
 }
 
 .products{
@@ -24,7 +24,7 @@
     background:
   linear-gradient(to top, rgba(255, 255, 255, 0) 95%, #fff),
   linear-gradient(to bottom, rgba(255, 255, 255, 0) 95%, #fff),
-  url('../img/products.png');
+  url('../img/main/products.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -59,14 +59,18 @@
 }
 
 .show-all{
-    margin: 2vmax 0;
+    margin: 3vmax 0;
 }
 
 
 /* МЕДИА */
 
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
+    .products-title{
+        font-size: 1.7vmax;
+    }
+
     .products-menu{
         width: 80%;
         height: 75vmax;
@@ -75,9 +79,9 @@
 
     .products{
         background:
-  linear-gradient(to top, rgba(255, 255, 255, 0) 95%, #fff),
-  linear-gradient(to bottom, rgba(255, 255, 255, 0) 95%, #fff),
-  url('../img/products-small.png');
+          linear-gradient(to top, rgba(255, 255, 255, 0) 95%, #fff),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0) 95%, #fff),
+          url('../img/main/products-small.png');
         background-size: cover;
     }
 
@@ -85,5 +89,7 @@
         width: 45%; /* Для двух изображений в ряду на маленьких экранах */
     }
 
-
+    #show-all-products{
+    font-size: 1.5vmax;
+}
 }

@@ -20,11 +20,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 admin.site.site_header = 'Карельский урожай'
+handler404 = 'main.views.error_404'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('manage/', admin.site.urls),
     path('', include('main.urls', namespace='main')),
 ]
 
 if settings.DEBUG:
+    # Медиа-файлы (картинки, документы, загруженные пользователями)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    # Статика (CSS, JS) при локальном тесте
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

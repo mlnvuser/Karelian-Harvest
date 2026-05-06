@@ -1,5 +1,6 @@
 {% extends 'main/base.html' %}
 {% load static %}
+{% load filters %}
 
 {% block styles %}
 	<link rel="stylesheet" href="{% static 'css/news.css' %}">
@@ -19,14 +20,14 @@
             <div class="article">
                 <div class="article-media">
                     {% if news.get_media_type == 'video' %}
-                        <video controls width="100%">
+                        <a href="{{ news.get_absolute_url }}"><video muted loop autoplay loading="lazy">
                             <source src="{{ news.video.url }}" type="video/mp4">
                             Ваш браузер не поддерживает видео.
-                        </video>
+                        </video></a>
                     {% elif news.get_media_type == 'image' %}
-                        <img src="{{ news.image.url }}" alt="{{ news.name }}">
+                        <a href="{{ news.get_absolute_url }}"><img src="{{ news.image.url }}" alt="{{ news.name }}"></a>
                     {% else %}
-                        <img src="{% static 'img/default-news.png' %}" alt="Нет медиафайла">
+                        <a href="{{ news.get_absolute_url }}"><img src="{% static 'img/news/default-news.png' %}" alt="Нет медиафайла"></a>
                     {% endif %}
                 </div>
 
@@ -40,8 +41,8 @@
                     </p>
 
                     <div class="article-meta">
-                        <span class="date">📅 {{ news.created|date:"d F Y г., H:i" }} 🕐</span>
-                        <a href="" class="btn">Подробнее</a>
+                        <span class="date">📅 {{ news.created|ru_month:True }} 🕐</span>
+                        <a href="{{ news.get_absolute_url }}" class="btn">Подробнее</a>
                     </div>
                 </div>
             </div>

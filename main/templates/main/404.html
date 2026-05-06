@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block styles %}
+	<link rel="stylesheet" href="{% static 'css/404.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="error-section">
+    <h2>404</h2>
+    <p>Упс... Такой страницы не существует :(</p>
+</section>
+{% endblock %}

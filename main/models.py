@@ -22,7 +22,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE, verbose_name='Категория')
     name = models.CharField(max_length=50, verbose_name='Название')
     slug = models.SlugField(max_length=50, verbose_name='Слаг')
     image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True, null=True, verbose_name='Изображение')
@@ -31,7 +31,7 @@ class Product(models.Model):
     available = models.BooleanField(default=True, verbose_name='Наличие')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Добавлено')
     updated = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
-    discount = models.DecimalField(default=0.00, max_digits=5, decimal_places=2, verbose_name='Скидка')
+    discount = models.DecimalField(default=0.00, max_digits=5, decimal_places=2, verbose_name='Скидка (%)')
 
     class Meta:
         ordering = ['name']
@@ -69,7 +69,7 @@ class Product(models.Model):
 class News(models.Model):
     name = models.CharField(max_length=50, verbose_name='Название')
     slug = models.SlugField(max_length=50, verbose_name='Слаг')
-    image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True, null=True, verbose_name='Изображение')
+    image = models.ImageField(upload_to='news/%Y/%m/%d', blank=True, null=True, verbose_name='Изображение')
     video = models.FileField(
         upload_to='news/%Y/%m/%d/',
         blank=True,
@@ -127,7 +127,7 @@ class News(models.Model):
         return list(cls.objects.filter(
             is_featured=True,
             published=True
-        ).order_by('-created')[:limit])
+        ).order_by('-updated')[:limit])
 
     @classmethod
     def get_regular_news(cls, limit=4):
@@ -144,6 +144,7 @@ class News(models.Model):
             .order_by('created')[:limit]  # Ascending (старые → новые)
         )
 
+
 class ContactInformation(models.Model):
     phone = models.CharField(max_length=20, blank=True, verbose_name='Номер телефона')
     email = models.EmailField(blank=True, verbose_name='Электронная почта')
@@ -152,6 +153,7 @@ class ContactInformation(models.Model):
     instagram = models.URLField(max_length=200, blank=True, verbose_name='Instagram')
     vk = models.URLField(max_length=200, blank=True, verbose_name='ВКонтакте')
     address = models.TextField(blank=True, verbose_name='Адрес торговли')
+    yandex_widget = models.TextField(blank=True,null=True,verbose_name='Яндекс карты')
     info = models.TextField(blank=True, verbose_name='Дополнительная информация')
 
     class Meta:

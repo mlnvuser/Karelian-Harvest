@@ -1,0 +1,67 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block styles %}
+	<link rel="stylesheet" href="{% static 'css/buy.css' %}">
+{% endblock %}
+{% block content %}
+<section class="buy-section">
+    <div class="buy-title">
+        <hr><h1>Купить</h1><hr>
+    </div>
+    <div class="buy-container">
+
+        <!-- Основной контент -->
+        <div class="buy-content">
+
+            {% if contact.telegram or contact.messenger_max %}
+            <div class="buy-options-grid">
+
+                <!-- Левая колонка: Telegram -->
+                {% if contact.telegram %}
+                <div class="buy-option telegram-column">
+                    <div class="option-icon-wrapper">
+                        <img src="{% static 'img/icons/telegram.png' %}" alt="Telegram">
+                    </div>
+                    <h2>Telegram</h2>
+                    <p>Напишите нам в Telegram — ответим в течение 15 минут!</p>
+                    <a href="{{ contact.telegram }}" class="btn telegram-btn">Перейти в Telegram →</a>
+                </div>
+                {% endif %}
+
+                <!-- Правая колонка: Messenger MAX -->
+                {% if contact.messenger_max %}
+                <div class="buy-option max-column">
+                    <div class="option-icon-wrapper">
+                        <img src="{% static 'img/icons/max.png' %}" alt="MAX Мессенджер">
+                    </div>
+                    <h2>Messenger MAX</h2>
+                    <p>Свяжитесь через MAX Мессенджер — быстрый способ заказать!</p>
+                    <a href="{{ contact.messenger_max }}" class="btn max-btn">Перейти в MAX Мессенджер →</a>
+                </div>
+                {% endif %}
+            </div>
+            {% else %}
+            <!-- Если нет ни одной ссылки -->
+            <div class="no-messengers">
+                <p>К сожалению, сейчас не указаны контакты для оформления заказа.</p>
+                <p>Пожалуйста, свяжитесь с нами другими способами или подождите.</p>
+            </div>
+            {% endif %}
+
+        </div>
+
+        <!-- Дополнительные инструкции -->
+        <div class="buy-instructions">
+            <h2>📝 Что писать в сообщении:</h2>
+            <ul>
+                <li><b>Название продукта</b>&nbsp;или артикул</li>
+                <li><strong>Количество</strong>, которое вы хотите заказать</li>
+                <li><strong>Адрес доставки</strong>&nbsp;или способ получения</li>
+                <li><strong>Телефон</strong>&nbsp;для обратной связи</li>
+            </ul>
+            <p class="note">✨ Менеджер подтвердит ваш заказ и озвучит итоговую стоимость!</p>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

@@ -13,7 +13,7 @@
     gap: 5%;
     align-items: center;
     width: 100%;
-    font-size: 1.2vmax;
+    font-size: 1.5vmax;
     margin-top: 2vmax;
 }
 
@@ -21,7 +21,7 @@
 .articles {
     display: flex;
     flex-direction: column;
-    gap: 2vmax;
+    gap: 3vmax;
     margin: 2vmax 0;
 }
 
@@ -63,7 +63,9 @@
 .article-content{
     display: flex;
     flex-direction: column;
-    padding-right: 2vmax;
+    padding: 2vmax 2vmax 2vmax 0;
+    gap: 2vmax;
+    font-size: 1.1vmax;
 }
 
 .article-content a {
@@ -78,6 +80,8 @@
 
 .article-meta{
     display: flex;
+    flex-wrap: wrap;
+    gap: 2vmax;
     justify-content: space-between;
     align-items: center;
 }
@@ -99,6 +103,7 @@
     gap: 2vmax;
 }
 
+
 /* МЕДИА*/
 
 
@@ -106,11 +111,17 @@
     .articles-container{
         width: 80%;
     }
+
+    .article-title{
+        font-size: 1.7vmax;
+    }
+
     .article {
         flex-direction: column;
     }
 
     .article-content{
         padding: 0 1vmax 2vmax 3vmax;
+        font-size: 1.4vmax;
     }
 }

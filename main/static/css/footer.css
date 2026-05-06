@@ -1,9 +1,11 @@
 .foot-container{
     display: flex;
     justify-content: center;
-    margin: 0 auto;
+    text-align: center;
     padding: 3vmax 0 3vmax 0;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0) 95%, #fff), url('../img/footer.png');
+    background: linear-gradient(to top, rgba(255, 255, 255, 0) 95%, #fff), url('../img/main/footer.png');
     background-size: cover;
+    background-position: center;
     font-size: 1vmax;
+    margin: 0 auto;
 }

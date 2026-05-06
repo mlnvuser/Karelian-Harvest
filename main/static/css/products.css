@@ -13,7 +13,7 @@
     align-items: center;
     width: 70%;
     margin: 2% 0;
-    font-size: 1.2em;
+    font-size: 1.5vmax;
 }
 
 .filter-form{
@@ -22,20 +22,35 @@
     justify-content: center;
     gap: 2vmax;
     flex-wrap: wrap;
+    font-size: 1.2vmax;
 }
 
 .filter-form select {
-    padding: 10px;
+    padding: 1vmax 1vmax;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-size: 14px;
-    min-width: 180px;
+    font-size: 1.2vmax;
     cursor: pointer;
 }
 
 .filter-form select:focus {
     outline: none;
     border-color: #8e3c0f;
+}
+
+.form-box{
+    display: flex;
+    align-items: center;
+    gap: 2vmax;
+}
+
+.form-btn{
+    display: flex;
+    gap: 1.5vmax;
+}
+
+.checkbox-label input[type="checkbox"] {
+    transform: scale(2); /* Увеличивает размер чекбокса в 1.5 раза */
 }
 
 .products{
@@ -87,13 +102,17 @@
 }
 
 .btn{
-    font-size: 0.9vmax;
+    font-size: 1vmax;
 }
 
 /* МЕДИА */
 
 
 @media (max-width: 768px) {
+    .products-title{
+        font-size: 1.7vmax;
+    }
+
     .products-menu{
         width: 80%;
     }
@@ -102,5 +121,12 @@
         width: 40%; /* Для двух изображений в ряду на маленьких экранах */
     }
 
+    .checkbox-label input[type="checkbox"] {
+        transform: scale(1); /* Увеличивает размер чекбокса в 1.5 раза */
+    }
+
+    .btn{
+        font-size: 1.2vmax;
+    }
 
 }
