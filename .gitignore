@@ -1,5 +1,15 @@
+# Python
+*.pyc
+__pycache__/
+
+# Виртуальное окружение
 .idea/
 .venv/
-__pycache__/
+
+# Django
+static/
+media/
+.DS_Store
+
+# Секреты
 .env
-/static/
