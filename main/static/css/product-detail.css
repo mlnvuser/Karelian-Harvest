@@ -20,9 +20,9 @@
    ========================================= */
 
 .detail img {
-    display: flex;
-    align-items: center;
-    width: 20vmax;
+    width: 35%;
+    height: auto;
+    align-self: flex-start;
     transition: transform 0.3s ease;
 }
 
@@ -51,7 +51,7 @@
     border-bottom: 2px solid black;
 }
 
-.product-price{
+.product-price, .sell-price{
     display: flex;
     align-items: center;
     gap: 1vmax;
@@ -83,12 +83,13 @@
         display: none;
     }
 
-    .product-price{
+    .product-price, .sell-price{
         justify-content: center;
     }
 
     .detail img{
-        width: 100%;
+        align-self: center;
+        width: 50%;
         height: auto;
     }
 
