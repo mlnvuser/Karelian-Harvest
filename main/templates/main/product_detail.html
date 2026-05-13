@@ -4,6 +4,7 @@
 {% block styles %}
 	<link rel="stylesheet" href="{% static 'css/product-detail.css' %}">
 {% endblock %}
+{% block title %}{{ product.name }}{% endblock %}
 
 {% block content %}
 <section class="product-detail">

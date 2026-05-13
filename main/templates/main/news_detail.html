@@ -5,6 +5,7 @@
 {% block styles %}
 	<link rel="stylesheet" href="{% static 'css/news-detail.css' %}">
 {% endblock %}
+{% block title %}{{ news.name }}{% endblock %}
 
 {% block content %}
 <section class="news-section">
