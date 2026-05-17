@@ -76,6 +76,14 @@
     border-radius: 15px;
 }
 
+.note-price{
+    margin: 0 1vmax 1vmax 2vmax;
+    text-align: center;
+    font-size: 1.3vmax;
+    color: gray;
+    font-weight: bold;
+}
+
 .product{
     display: flex;
     flex-direction: column;

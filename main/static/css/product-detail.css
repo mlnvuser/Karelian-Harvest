@@ -57,6 +57,12 @@
     gap: 1vmax;
 }
 
+.note-price{
+    font-size: 1vmax;
+    color: gray;
+    font-weight: bold;
+}
+
 .product-description{
     font-size: 1vmax;
 }
@@ -85,6 +91,12 @@
 
     .product-price, .sell-price{
         justify-content: center;
+    }
+
+    .note-price{
+        font-size: 1.2vmax;
+        text-align: center;
+        font-weight: normal;
     }
 
     .detail img{
