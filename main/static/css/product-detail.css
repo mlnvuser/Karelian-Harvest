@@ -89,7 +89,7 @@
 
     .detail img{
         align-self: center;
-        width: 50%;
+        width: 20vmax;
         height: auto;
     }
 
