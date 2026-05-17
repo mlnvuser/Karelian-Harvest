@@ -22,15 +22,18 @@
                         <p class="old-price">{{ product.price|floatformat:"0" }}₽</p>
                         <p class="sell-price">{{ product.sell_price|floatformat:"0" }}₽</p>
                     </div>
+                    <div class="note-price">
+                <span>* Цена указана за 1 кг. В наличии баночки объёмом 0.2 кг., 0.5 кг., 1 кг.</span>
+            </div>
                 {% else %}
                     <p class="sell-price">{{ product.price|floatformat:"0" }}₽</p>
+                    <div class="note-price">
+                <span>* Цена указана за 1 кг. В наличии баночки объёмом 0.2 кг., 0.5 кг., 1 кг.</span>
+            </div>
                 {% endif %}
             {% else %}
                 <p class="unavailable">Нет в наличии</p>
             {% endif %}
-            <div class="note-price">
-            <span>* Цена указана за 1 кг. В наличии баночки объёмом 0.2 кг., 0.5 кг., 1 кг.</span>
-        </div>
             <p class="product-description">{{ product.description|linebreaksbr }}</p>
         </div>
     </div>
