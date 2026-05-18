@@ -35,8 +35,8 @@
   justify-content: space-between;
   align-items: center;
   background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Лёгкая тень для эффекта приподнятости */
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Лёгкая тень для эффекта приподнятости */
   opacity: 0.5; /* Неактивные слайды полупрозрачные */
   transform: scale(0.92); /* Неактивные слайды немного уменьшены */
   transition: opacity 0.5s ease, transform 0.5s ease; /* Плавное изменение прозрачности и масштаба */
