@@ -132,7 +132,7 @@ class News(models.Model):
     @classmethod
     def get_regular_news(cls, limit=4):
         """
-        Возвращает обычные новости (не избранные), отсортированные по возрастанию даты.
+        Возвращает обычные новости (не избранные), отсортированные по убыванию даты.
         limit: максимальное количество новостей.
         Возвращает: Python List
         """
@@ -141,7 +141,7 @@ class News(models.Model):
                 is_featured=False,
                 published=True
             )
-            .order_by('created')[:limit]  # Ascending (старые → новые)
+            .order_by('-created')[:limit]  # Ascending (новые → старые)
         )
 
 
