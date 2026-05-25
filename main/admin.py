@@ -19,10 +19,10 @@ class ProductAdmin(admin.ModelAdmin):
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
     list_display = [
-        'name','get_media_type_display', 'is_featured',
+        'name','get_media_type_display', 'is_featured', 'is_pinned',
         'published', 'created', 'updated'
     ]
-    list_filter = ['created', 'updated', 'published']
+    list_filter = ['created', 'updated', 'published', 'is_pinned', 'is_featured']
     prepopulated_fields = {'slug':('name',)}
     fieldsets = [
         ('Основная информация', {
@@ -33,7 +33,7 @@ class NewsAdmin(admin.ModelAdmin):
             'description': 'Загружайте <b>либо изображение, либо видео</b>. Одновременно оба загружать нельзя.'
         }),
         ('Статус', {
-            'fields': ('is_featured', 'published')
+            'fields': ('is_featured', 'is_pinned', 'published')
         }),
     ]
 

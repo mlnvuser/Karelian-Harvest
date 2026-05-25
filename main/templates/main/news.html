@@ -43,7 +43,11 @@
                     </p>
 
                     <div class="article-meta">
-                        <span class="date">📅 {{ news.created|ru_month:True }} 🕐</span>
+                        {% if news.is_pinned %}
+                            <span class="date">📌📅 {{ news.created|ru_month:True }} 🕐</span>
+                        {% else %}
+                            <span class="date">📅 {{ news.created|ru_month:True }} 🕐</span>
+                        {% endif %}
                         <a href="{{ news.get_absolute_url }}" class="btn">Подробнее</a>
                     </div>
                 </div>

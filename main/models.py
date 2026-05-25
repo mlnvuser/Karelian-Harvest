@@ -80,6 +80,7 @@ class News(models.Model):
     )
     description = models.TextField(blank=True, verbose_name='Описание')
     is_featured = models.BooleanField(default=False,verbose_name='Избранная новость')
+    is_pinned = models.BooleanField(default=False, verbose_name='Закреплена')
     published = models.BooleanField(default=False,verbose_name='Опубликовать')
     created = models.DateTimeField(auto_now_add=True, verbose_name='Создано')
     updated = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
@@ -92,6 +93,7 @@ class News(models.Model):
             models.Index(fields = ['-created']),
             models.Index(fields=['is_featured']),
             models.Index(fields=['published']),
+            models.Index(fields=['is_pinned']),
         ]
         verbose_name = 'Новость'
         verbose_name_plural = 'Новости'
@@ -141,7 +143,7 @@ class News(models.Model):
                 is_featured=False,
                 published=True
             )
-            .order_by('-created')[:limit]  # Ascending (новые → старые)
+            .order_by('-is_pinned', '-created')[:limit]  # Сначала закрепленные потом - (новые → старые)
         )
 
 

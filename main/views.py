@@ -65,7 +65,7 @@ def product_detail(request, slug):
 
 def news(request):
 
-    all_news = list(News.objects.filter(published=True, ).order_by('-created'))
+    all_news = list(News.objects.filter(published=True, ).order_by('-is_pinned', '-created'))
 
     # Создаем объект пагинатора
     paginator = Paginator(all_news, 5)  # 5 новостей на страницу
